@@ -1,0 +1,251 @@
+{% extends "base.html" %}
+{% block content %}
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Dashboard
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+            <li class="active">Dashboard</li>
+          </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+       <!-- Info boxes -->
+          <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="box box-default">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Managed Clients</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-footer no-padding">
+                  <ul class="nav nav-pills nav-stacked">
+                    <li><a>All <span class="pull-right text-red">
+                    {{allmanaged}}
+                    </span></a></li> 
+                    <li><a>CCD <span class="pull-right text-green">
+                    {{ccdmanaged|length}}
+                    </span></a></li>
+                    <li><a>AD <span class="pull-right text-yellow">
+                     {{admanaged|length}}
+                    </span></a></li>
+                  </ul>
+                </div><!-- /.footer -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="box box-default">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Machine Type</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-footer no-padding">
+                  <ul class="nav nav-pills nav-stacked">
+                    <li><a>Desktop <span class="pull-right text-red">
+                    {{manageddesktops|length}}
+                    </span></a></li>
+                    <li><a>Laptop <span class="pull-right text-green">
+                    {{managedlaptops|length}} 
+                    </span></a></li>
+                    <li><a>iOS <span class="pull-right text-yellow">
+                    {{manageddevices|length}}  
+                    </span></a></li>
+                  </ul>
+                </div><!-- /.footer -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="box box-default">
+                <div class="box-header with-border">
+                  <h3 class="box-title">OS X Version</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-footer no-padding">
+                  <ul class="nav nav-pills nav-stacked">
+                    <li><a>10.9 Mavericks <span class="pull-right text-red">
+                    {{mavericksinstalled|length}}
+                    </span></a></li>
+                    <li><a>10.10 Yosemite <span class="pull-right text-green">
+                    {{yosemiteinstalled|length}}
+                    </span></a></li>
+                    <li><a>10.11 El Capitan <span class="pull-right text-yellow">
+                    {{elcapinstalled|length}}
+                    </span></a></li>
+                  </ul>
+                </div><!-- /.footer -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="box box-default">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Last Check In</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-footer no-padding">
+                  <ul class="nav nav-pills nav-stacked">
+                    <li><a>Greater Than 20 Days <span class="pull-right text-red">
+                    {{lastchecktwenty|length}}
+                    </span></a></li>
+                    <li><a>Greater Than 45 Days <span class="pull-right text-green">
+                    {{lastcheckfortyfive|length}}
+                    </span></a></li>
+                    <li><a>Greater Than 90 Days <span class="pull-right text-yellow">
+                    {{lastcheckninety|length}}
+                    </span></a></li>
+                  </ul>
+                </div><!-- /.footer -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="box">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Complaince Report</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <div class="btn-group">
+                    </div>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <p class="text-center">
+                        <strong>Machines Out Of Compliance</strong>
+                      </p>
+                      <div class="chart">
+                        <!-- Sales Chart Canvas -->
+                        <canvas id="salesChart" style="height: 180px;"></canvas>
+                      </div><!-- /.chart-responsive -->
+                    </div><!-- /.col -->
+                    <div class="col-md-4">
+                      <p class="text-center">
+                        <strong>Applications Out Of Date</strong>
+                      </p>
+                      <div class="progress-group">
+                        <span class="progress-text">OS X Updates</span>
+                        <span class="progress-number"><b>160</b>/690</span>
+                        <div class="progress sm">
+                          <div class="progress-bar progress-bar-aqua" style="width: 30%"></div>
+                        </div>
+                      </div><!-- /.progress-group -->
+                      <div class="progress-group">
+                        <span class="progress-text">Adobe Flash</span>
+                        <span class="progress-number"><b>310</b>/690</span>
+                        <div class="progress sm">
+                          <div class="progress-bar progress-bar-red" style="width: 80%"></div>
+                        </div>
+                      </div><!-- /.progress-group -->
+                      <div class="progress-group">
+                        <span class="progress-text">Microsoft Office</span>
+                        <span class="progress-number"><b>480</b>/690</span>
+                        <div class="progress sm">
+                          <div class="progress-bar progress-bar-green" style="width: 80%"></div>
+                        </div>
+                      </div><!-- /.progress-group -->
+                      <div class="progress-group">
+                        <span class="progress-text">Symantec Endpoint Protection</span>
+                        <span class="progress-number"><b>250</b>/690</span>
+                        <div class="progress sm">
+                          <div class="progress-bar progress-bar-yellow" style="width: 80%"></div>
+                        </div>
+                      </div><!-- /.progress-group -->
+                    </div><!-- /.col -->
+                  </div><!-- /.row -->
+                </div><!-- ./box-body -->
+                <div class="box-footer">
+                  <div class="row">
+                    <div class="col-sm-3 col-xs-6">
+                      <div class="description-block border-right">
+                        <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 17%</span>
+                        <h5 class="description-header">137</h5>
+                        <span class="description-text">Root Enabled</span>
+                      </div><!-- /.description-block -->
+                    </div><!-- /.col -->
+                    <div class="col-sm-3 col-xs-6">
+                      <div class="description-block border-right">
+                        <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>
+                        <h5 class="description-header">408</h5>
+                        <span class="description-text">Using iCloud Service</span>
+                      </div><!-- /.description-block -->
+                    </div><!-- /.col -->
+                    <div class="col-sm-3 col-xs-6">
+                      <div class="description-block border-right">
+                        <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>
+                        <h5 class="description-header">516</h5>
+                        <span class="description-text">Self Service Installed</span>
+                      </div><!-- /.description-block -->
+                    </div><!-- /.col -->
+                    <div class="col-sm-3 col-xs-6">
+                      <div class="description-block">
+                        <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> 18%</span>
+                        <h5 class="description-header">26</h5>
+                        <span class="description-text">Remote Login On</span>
+                      </div><!-- /.description-block -->
+                    </div>
+                  </div><!-- /.row -->
+                </div><!-- /.box-footer -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+          <!-- TABLE: LATEST ORDERS -->
+              <div class="box box-info">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Changes In Progress</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <div class="table-responsive">
+                    <table class="table no-margin">
+                      <thead>
+                        <tr>
+                          <th>Change #</th>
+                          <th>Description</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><a>000000OR9842</a></td>
+                          <td>Enable Flash Update </td>
+                          <td><span class="label label-success">In Process</span></td>
+                        </tr>
+                        <tr>
+                          <td><a>000000OR1848</a></td>
+                          <td>Enable Microsoft Office 2016 in Self Service</td>
+                          <td><span class="label label-success">In Process</span></td>
+                        </tr>
+                        <tr>
+                          <td><a>000000OR7429</a></td>
+                          <td>OS X Security Updates</td>
+                          <td><span class="label label-success">In Process</span></td>
+                        </tr>
+                        <tr>
+                          <td><a>000000OR7429</a></td>
+                          <td>Update JSS from 9.73 to 9.81</td>
+                          <td><span class="label label-success">In Process</span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div><!-- /.table-responsive -->
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+{% endblock %}
