@@ -3,52 +3,44 @@
 from flask import Flask, render_template
 import requests
 import json
+from base64 import b64encode
 
-application = Flask(__name__)
+app = Flask(__name__)
+app.config.from_object('config')
+
+credentials = '{username}:{password}'.format(
+  username=app.config['JSS_USERNAME'],
+  password=app.config['JSS_PASSWORD'])
+
+authorization = 'Basic {auth}'.format(auth=b64encode(credentials))
+
+def jss_request(endpoint):
+    headers = {
+        'authorization': authorization,
+        'accept': "application/json",
+    }
+    jss_request_url = '{base}{endpoint}'.format(
+        base=app.config['JSS_RESOURCE_BASE_URL'], endpoint=endpoint)
+    r = requests.get(jss_request_url)
+    return r
+    
 
 @application.route('/')
 def homepage():
-  headers = {
-    'authorization': "Basic YXBpX3JlYWQ6bWs5Q3E0SFZmIQ==",
-    'accept': "application/json",
-  }
 
-  r1 = requests.get(
-      'https://jss01.fnal.gov:8443/JSSResource/computergroups/id/1',
-      headers=headers)
-  r2 = requests.get(
-      'https://jss01.fnal.gov:8443/JSSResource/computergroups/id/183',
-      headers=headers)
-  r3= requests.get(
-      'https://jss01.fnal.gov:8443/JSSResource/computergroups/id/19',
-      headers=headers)
-  r4= requests.get(
-      'https://jss01.fnal.gov:8443/JSSResource/computergroups/id/196',
-      headers=headers)
-  r5= requests.get(
-      'https://jss01.fnal.gov:8443/JSSResource/computergroups/id/195',
-      headers=headers)
-  r6= requests.get(
-      'https://jss01.fnal.gov:8443/JSSResource/mobiledevicegroups/id/5',
-      headers=headers)
-  r7= requests.get(
-      'https://jss01.fnal.gov:8443/JSSResource/computergroups/id/115',
-      headers=headers)
-  r8= requests.get(
-      'https://jss01.fnal.gov:8443/JSSResource/computergroups/id/134',
-      headers=headers)
-  r9= requests.get(
-      'https://jss01.fnal.gov:8443/JSSResource/computergroups/id/119',
-      headers=headers)
-  r10= requests.get(
-      'https://jss01.fnal.gov:8443/JSSResource/computergroups/id/136',
-      headers=headers)
-  r11= requests.get(
-      'https://jss01.fnal.gov:8443/JSSResource/computergroups/id/135',
-      headers=headers)
-  r12= requests.get(
-      'https://jss01.fnal.gov:8443/JSSResource/computergroups/id/153',
-      headers=headers)
+
+    r1 = jss_request('computergroups/id/1')
+    r2 = jss_request('/computergroups/id/183')
+    r3 = jss_request('/computergroups/id/19')
+    r4 = jss_request('/computergroups/id/196')
+    r5 = jss_request('/computergroups/id/195')
+    r6 = jss_request('/mobiledevicegroups/id/5')
+    r7 = jss_request('/computergroups/id/115')
+    r8 = jss_request('/computergroups/id/134')
+    r9 = jss_request('/computergroups/id/119')
+    r10 = jss_request('/computergroups/id/136')
+    r11 = jss_request('/computergroups/id/135')
+    r12 = jss_request('/computergroups/id/153')
 
 
   return render_template('index.html', allmanaged=len(json.loads(r1.text)['computer_group']['computers']) ,
