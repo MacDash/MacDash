@@ -1,2 +1,2 @@
-
-config.py
+*.pyc
+web/config.py
