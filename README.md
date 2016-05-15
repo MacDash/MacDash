@@ -2,6 +2,7 @@
 
 ### Beginning steps for running with PostgreSQL on OSX
 Download Postgres.app for OSX from http://postgresapp.com
+Follow the setup instructions that page to add postgres to your $PATH.
 
 ## Install Requirements
 ```
