@@ -1,5 +1,8 @@
 # MacDash
 
+### Beginning steps for running with PostgreSQL on OSX
+Download Postgres.app for OSX from http://postgresapp.com
+
 ## Install Requirements
 ```
 pip install -r requirements.txt
