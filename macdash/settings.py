@@ -17,11 +17,11 @@ import os
 #################################################
 USE_POSTGRES = True
 
-POSTGRES_USERNAME = ''
-POSTGRES_PASSWORD = ''
-POSTGRES_DB_NAME = 'macdash'
-POSTGRES_HOST = 'localhost'
-POSTGRES_PORT = '5432'
+POSTGRES_USERNAME = os.environ.get('POSTGRES_USERNAME', '')
+POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD', '')
+POSTGRES_DB_NAME = os.environ.get('POSTGRES_DB_NAME', 'macdash')
+POSTGRES_HOST = os.environ.get('POSTGRES_HOST', 'localhost')
+POSTGRES_PORT = os.environ.get('POSTGRES_PORT', '5432')
 
 
 #################################################
