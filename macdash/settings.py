@@ -71,10 +71,16 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF = 'macdash.urls'
 
+# Add static folder to STATIC_DIRS
+STATICFILES_DIRS = [
+os.path.join(BASE_DIR, "static"),
+]
+
+# Add templates to DIRS
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["templates"],  #modify this line
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -150,3 +156,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_REDIRECT_URL = '/' # It means home view
