@@ -6,6 +6,6 @@ from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 
 # Create your views here.
-@login_required(login_url="login/")
+@login_required
 def home(request):
-    return render(request,"index.html")
+    return render(request, "index.html")
