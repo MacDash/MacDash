@@ -18,6 +18,11 @@ from django.contrib import admin
 # Add this import
 from django.contrib.auth.views import login, logout
 
+from django.contrib.auth.decorators import login_required
+from django.contrib import admin
+admin.autodiscover()
+admin.site.login = login_required(admin.site.login)
+
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
