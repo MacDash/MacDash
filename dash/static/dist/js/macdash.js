@@ -1,10 +1,9 @@
 /**
- * AdminLTE Demo Menu
+ * MacDash Menu
  * ------------------
- * You should not use this file in production.
- * This file is for demo purposes only.
+
  */
-(function ($, AdminLTE) {
+(function ($, MacDash) {
 
   "use strict";
 
@@ -30,13 +29,13 @@
 
   //Create the new tab
   var tab_pane = $("<div />", {
-    "id": "control-sidebar-theme-demo-options-tab",
+    "id": "control-sidebar-theme-macdash-options-tab",
     "class": "tab-pane active"
   });
 
   //Create the tab button
   var tab_button = $("<li />", {"class": "active"})
-          .html("<a href='#control-sidebar-theme-demo-options-tab' data-toggle='tab'>"
+          .html("<a href='#control-sidebar-theme-macdash-options-tab' data-toggle='tab'>"
                   + "<i class='fa fa-wrench'></i>"
                   + "</a>");
 
@@ -46,10 +45,10 @@
           .before(tab_button);
 
   //Create the menu
-  var demo_settings = $("<div />");
+  var macdash_settings = $("<div />");
 
   //Layout options
-  demo_settings.append(
+  macdash_settings.append(
           "<h4 class='control-sidebar-heading'>"
           + "Layout Options"
           + "</h4>"
@@ -204,10 +203,10 @@
                   + "<p class='text-center no-margin' style='font-size: 12px;'>Yellow Light</p>");
   skins_list.append(skin_yellow_light);
 
-  demo_settings.append("<h4 class='control-sidebar-heading'>Skins</h4>");
-  demo_settings.append(skins_list);
+  macdash_settings.append("<h4 class='control-sidebar-heading'>Skins</h4>");
+  macdash_settings.append(skins_list);
 
-  tab_pane.append(demo_settings);
+  tab_pane.append(macdash_settings);
   $("#control-sidebar-home-tab").after(tab_pane);
 
   setup();
