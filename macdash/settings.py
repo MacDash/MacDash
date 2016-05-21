@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 
 #################################################
-#                   CUSTOM SETTINGS             #
+#               POSTGRES SETTINGS               #
 #################################################
 USE_POSTGRES = True
 
@@ -42,8 +42,9 @@ SECRET_KEY = 'mct$y5o9&m+uq&n45f4^$=#iw&1ploor&3nlyj&&s0!go(cxkq'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-LOGIN_URL = '/admin/login/'
+LOGIN_URL = '/login/'
 LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
 
 
 # Application definition
@@ -71,10 +72,16 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF = 'macdash.urls'
 
+# Add static folder to STATIC_DIRS
+# STATICFILES_DIRS = [
+# os.path.join(BASE_DIR, "static"),
+# ]
+
+# Add templates to DIRS
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [],  #modify this line
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -150,3 +157,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')

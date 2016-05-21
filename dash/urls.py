@@ -1,7 +1,9 @@
+# dash/urls.py
 from django.conf.urls import url
 
-from .views import index
+from . import views
 
+# We are adding a URL called /home
 urlpatterns = [
-    url(r'^$', index, name='index'),
+    url(r'^$', views.home, name='home'),
 ]

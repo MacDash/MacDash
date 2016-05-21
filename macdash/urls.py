@@ -15,10 +15,18 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from django.contrib.auth.views import logout
+# Add this import
+from django.contrib.auth.views import login, logout
+
+from django.contrib.auth.decorators import login_required
+from django.contrib import admin
+admin.autodiscover()
+admin.site.login = login_required(admin.site.login)
+
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^logout/$', logout, name='logout', kwargs={'next_page': '/'}),
+    url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('dash.urls')),
+    url(r'^login/$', login, {'template_name': 'login.html'}, name='login'), 
+    url(r'^logout/$', logout, {'next_page': '/login'}, name='logout'), 
 ]
