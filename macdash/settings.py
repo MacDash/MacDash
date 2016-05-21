@@ -57,8 +57,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'debug_toolbar',
 ]
+
+if os.environ.get('PRODUCTION', False) is False:
+    INSTALLED_APPS.append('debug_toolbar')
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
