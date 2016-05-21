@@ -27,7 +27,7 @@ module.exports = function (grunt) {
         },
         files: {
           // compilation.css  :  source.less
-          "dist/css/AdminLTE.css": "build/less/AdminLTE.less",
+          "dist/css/macdash.css": "build/less/macdash.less",
           //Non minified skin files
           "dist/css/skins/skin-blue.css": "build/less/skins/skin-blue.less",
           "dist/css/skins/skin-black.css": "build/less/skins/skin-black.less",
@@ -52,7 +52,7 @@ module.exports = function (grunt) {
         },
         files: {
           // compilation.css  :  source.less
-          "dist/css/AdminLTE.min.css": "build/less/AdminLTE.less",
+          "dist/css/macdash.min.css": "build/less/macdash.less",
           // Skins minified
           "dist/css/skins/skin-blue.min.css": "build/less/skins/skin-blue.less",
           "dist/css/skins/skin-black.min.css": "build/less/skins/skin-black.less",
@@ -129,7 +129,7 @@ module.exports = function (grunt) {
         csslintrc: 'build/less/.csslintrc'
       },
       dist: [
-        'dist/css/AdminLTE.css',
+        'dist/css/macdash.css',
       ]
     },
 
