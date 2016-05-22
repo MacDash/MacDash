@@ -60,7 +60,7 @@ INSTALLED_APPS = [
     'settings_context_processor',
 ]
 
-if os.environ.get('PRODUCTION', False) is False:
+if DEBUG:
     INSTALLED_APPS.append('debug_toolbar')
 
 MIDDLEWARE_CLASSES = [
