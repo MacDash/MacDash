@@ -4,3 +4,4 @@ psycopg2==2.6.1
 gunicorn==19.3.0
 redis==2.10.3
 django-debug-toolbar==1.4
+django-settings-context-processor=0.2

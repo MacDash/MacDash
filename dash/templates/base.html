@@ -41,10 +41,17 @@
 
         <!-- Logo -->
         <a href="{{ index }}" class="logo">
-          <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>M</b>D</span>
-          <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Mac</b>Dash</span>
+          {% if MACDASH_BRANDING %}
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>{{ MACDASH_BRANDING.0 }}</b>MD</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>{{ MACDASH_BRANDING }}</b>MacDash</span>
+          {% else %}
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>M</b>D</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>Mac</b>Dash</span>
+          {% endif %}
         </a>
 
         <!-- Header Navbar -->
