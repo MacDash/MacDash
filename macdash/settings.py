@@ -163,10 +163,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+TEMPLATE_VISIBLE_SETTINGS = []
 
+try:
+    from custom_settings import *
 
-from custom_settings import *
-
-TEMPLATE_VISIBLE_SETTINGS = (
-    'MACDASH_BRANDING',
-)
+    if 'MACDASH_BRANDING' in globals():
+        TEMPLATE_VISIBLE_SETTINGS.append('MACDASH_BRANDING')
+except ImportError:
+    pass
