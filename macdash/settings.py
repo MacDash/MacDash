@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'settings_context_processor',
+    'jss',
 ]
 
 if DEBUG:

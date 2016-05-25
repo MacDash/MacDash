@@ -1,0 +1,4 @@
+MACDASH_BRANDING = ''
+JSS_URL = ''
+JSS_USER = ''
+JSS_PASSWORD = ''
