@@ -57,7 +57,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'settings_context_processor',
 ]
+
+if DEBUG:
+    INSTALLED_APPS.append('debug_toolbar')
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -89,6 +93,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'settings_context_processor.context_processors.settings'
             ],
         },
     },
@@ -158,3 +163,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+TEMPLATE_VISIBLE_SETTINGS = []
+
+try:
+    from custom_settings import *
+
+    if 'MACDASH_BRANDING' in globals():
+        TEMPLATE_VISIBLE_SETTINGS.append('MACDASH_BRANDING')
+except ImportError:
+    pass

@@ -4,8 +4,8 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    {% if title %}
-    <title>{{ title }} | Login</title>
+    {% if MACDASH_BRANDING %}
+    <title>{{ MACDASH_BRANDING }}MacDash | Login</title>
     {% else %}
     <title>MacDash | Login</title>
     {% endif %}
@@ -45,7 +45,11 @@
   <body class="hold-transition login-page">
     <div class="login-box">
       <div class="login-logo">
-        <a href="/login"><b>Mac</b>Dash</a>
+        {% if MACDASH_BRANDING %}
+          <a href="/login"><b>{{ MACDASH_BRANDING }}</b>MacDash</a>
+        {% else %}
+          <a href="/login"><b>Mac</b>Dash</a>
+        {% endif %}
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>

@@ -24,3 +24,9 @@ python manage.py createsuperuser
 ```
 python manage.py runserver
 ```
+
+## Customizing the UI
+
+#### Add Company Name before MacDash
+- Create a file called `custom_settings.py` at the root directory.
+- Add the key `MACDASH_BRANDING` to `custom_settings.py`
