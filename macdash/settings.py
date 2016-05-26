@@ -113,10 +113,10 @@ if USE_POSTGRES:
             'USER': POSTGRES_USERNAME,
             'PASSWORD': POSTGRES_PASSWORD,
             'HOST': POSTGRES_HOST,
-            'PORT': POSTGRES_PORT,   
+            'PORT': POSTGRES_PORT,
         }
     }
-else:   
+else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
