@@ -6,6 +6,6 @@ from . import views
 # We are adding a URL called /home
 urlpatterns = [
     url(r'^$', views.home, name='home'),
-    url(r'^devices/$', 'dash.views.devices'),
+    url(r'^devices/$', views.devices, name='devices'),
 ]
 
