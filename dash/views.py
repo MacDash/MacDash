@@ -9,3 +9,6 @@ from django.template import RequestContext
 @login_required
 def home(request):
     return render(request, "index.html")
+
+def devices (request):
+    return render(request, "devices.html")
