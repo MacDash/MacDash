@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      	<h1>
+        {{ list_title }}
+      	</h1>
+      	<ol class="breadcrumb">
+        	<li><a href="/"><i class="fa fa-dashboard"></i> Level</a></li>
+        	<li class="active">Devices</li>
+      	</ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+		<div class="box">
+	    	<div class="box-header">
+	        	<h3 class="All Devices">
+	    	</div>
+	    	<!-- /.box-header -->
+	    	<div class="box-body">
+	        	<div id="devices_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+            		<div class="row">
+	            		<div class="col-sm-6">
+	            			<div class="dataTables_length" id="devices_length">
+	            				<label>Show 
+	            					<select name="devices_length" aria-controls="devices" class="form-control input-sm">
+	           							<option value="10">10</option>
+	           							<option value="25">25</option>
+	           							<option value="50">50</option>
+	           							<option value="100">100</option>
+	           						</select> entries
+	           					</label>
+	           				</div>
+	           			</div>
+	           			<div class="col-sm-6">
+	           				<div id="devices_filter" class="dataTables_filter">
+	           					<label>Search:
+	           						<input type="search" class="form-control input-sm" placeholder="Search" aria-controls="devices">
+            					</label>
+            				</div>
+            			</div>
+	            	</div>
+			        <div class="row">
+			           	<div class="col-sm-12">
+			           		<table id="devices" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="devices_info">
+			               		<thead>
+			               			<tr role="row">
+			               				<th class="sorting_asc" tabindex="0" aria-controls="devices" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 190px;">
+			                				Name
+			                			</th>
+			                			<th class="sorting" tabindex="0" aria-controls="devices" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 235px;">
+			                				MAC Address
+			               				</th>
+			               				<th class="sorting" tabindex="0" aria-controls="devices" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 208px;">
+			               					JAMF Version
+			               				</th>
+			               				<th class="sorting" tabindex="0" aria-controls="devices" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 163px;">
+			               					Serial Number
+			               				</th>
+			               				<th class="sorting" tabindex="0" aria-controls="devices" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 118px;">
+			               					Last Checkin
+			               				</th>
+			               			</tr>
+			               		</thead>
+			               		<tbody>
+			               			{% for item in items %}
+			               			<tr role="row" class="odd">
+			               				<td class="sorting_1">{{ item.name }}</td>
+			               				<td>{{ item.mac_address }}</td>
+			               				<td>{{ item.jamf_version }}</td>
+			               				<td>{{ item.serial_number }}</td>
+			               				<td>{{ item.last_contact_time_utc }}</td>
+			               			</tr>
+			               			{% endfor %}
+			                	</tbody>
+			                	<tfoot>
+			                	<tr>
+			                		<th rowspan="1" colspan="1">Name</th>
+			                		<th rowspan="1" colspan="1">MAC Address</th>
+			                		<th rowspan="1" colspan="1">JAMF Version</th>
+			                		<th rowspan="1" colspan="1">Serial Number</th>
+			                		<th rowspan="1" colspan="1">Last Checkin</th></tr>
+			                	</tfoot>
+			              	</table>
+			            </div>
+			        </div>
+			        <div class="row">
+			        	<div class="col-sm-5">
+			        		<div class="dataTables_info" id="devices_info" role="status" aria-live="polite">
+			        			Showing 1 to 10 of 1000 entries
+			        		</div>
+			        	</div>
+			        	<div class="col-sm-7">
+			        		<div class="dataTables_paginate paging_simple_numbers" id="devices_paginate">
+			        			<ul class="pagination">
+			        				<li class="paginate_button previous disabled" id="devices_previous">
+			        					<a href="#" aria-controls="devices" data-dt-idx="0" tabindex="0">Previous</a>
+			        				</li>
+			        				<li class="paginate_button active">
+			        					<a href="#" aria-controls="devices" data-dt-idx="1" tabindex="0">1</a>
+			        				</li>
+			        				<li class="paginate_button ">
+			        					<a href="#" aria-controls="devices" data-dt-idx="2" tabindex="0">2</a>
+			        				</li>
+			        				<li class="paginate_button ">
+			        					<a href="#" aria-controls="devices" data-dt-idx="3" tabindex="0">3</a>
+			        				</li>
+			        				<li class="paginate_button ">
+			        					<a href="#" aria-controls="devices" data-dt-idx="4" tabindex="0">4</a>
+			        				</li>
+			        				<li class="paginate_button ">
+			        					<a href="#" aria-controls="devices" data-dt-idx="5" tabindex="0">5</a>
+			        				</li>
+			        				<li class="paginate_button ">
+			        					<a href="#" aria-controls="devices" data-dt-idx="6" tabindex="0">6</a>
+			        				</li>
+			        				<li class="paginate_button next" id="devices_next">
+			        					<a href="#" aria-controls="devices" data-dt-idx="7" tabindex="0">Next</a>
+			        				</li>
+			        			</ul>
+			        		</div>
+			        	</div>
+			        </div>
+			    </div>
+			</div>
+		<!-- /.box-body -->
+		</div>
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+<script src="//code.jquery.com/jquery-1.12.3.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(function () {
+		$('#devices').DataTable({
+	    	"paging": true,
+	    	"lengthChange": false,
+	    	"searching": false,
+	    	"ordering": true,
+	    	"info": true,
+	    	"autoWidth": false
+		});
+	});
+</script>
+{% endblock %}

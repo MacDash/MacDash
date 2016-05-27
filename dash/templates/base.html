@@ -123,10 +123,37 @@
           <ul class="sidebar-menu">
             <li class="header">Menu</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="{% url 'home' %}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-            <li><a href="{% url 'devices' %}"><i class="fa fa-desktop"></i> <span>Devices</span><small class="label pull-right bg-green">Coming Soon</small></a></li>
+            {% if menu_active == 'dashboard' %}
+            <li class="active">
+            {% else %}
+            <li>
+            {% endif %}
+              <a href="{% url 'home' %}">
+                <i class="fa fa-dashboard"></i> 
+                <span>Dashboard</span>
+              </a>
+            </li>
+            {% if menu_active == 'devices' %}
+            <li class="active">
+            {% else %}
+            <li>
+            {% endif %}
+              <a href="{% url 'devices' %}">
+                <i class="fa fa-desktop"></i> 
+                <span>Devices</span>
+                <small class="label pull-right bg-green">Coming Soon</small>
+              </a>
+            </li>
+            {% if menu_active == 'sites' %}
+            <li class="active" class="treeview">
+            {% else %}
             <li class="treeview">
-              <a href="#"><i class="fa fa-building-o"></i> <span>Sites</span><small class="label pull-right bg-green">Coming Soon</small></i></a>
+            {% endif %}
+              <a href="#">
+                <i class="fa fa-building-o"></i>
+                <span>Sites</span>
+                <small class="label pull-right bg-green">Coming Soon</small>
+              </a>
               <ul class="treeview-menu">
                 <li><a href="#">Site 1</a></li>
                 <li><a href="#">Site 2</a></li>
