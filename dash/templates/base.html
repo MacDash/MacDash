@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     {% if MACDASH_BRANDING %}
-    <title>{{ MACDASH_BRANDING }}MacDash | Login</title>
+    <title>{{ MACDASH_BRANDING }}MacDash</title>
     {% else %}
     <title>MacDash</title>
     {% endif %}
@@ -129,10 +129,16 @@
             {% else %}
             <li>
             {% endif %}
-              <a href="{% url 'devices' %}">
+              <a href="">
                 <i class="fa fa-desktop"></i> 
                 <span>Devices</span>
               </a>
+              <ul class="treeview-menu">
+				<li><a href="{% url 'devices' %}">All Devices</a></li>
+                <li><a href="#">Mac</a></li>
+                <li><a href="#">iOS</a></li>
+				<li><a href="#">Server</a></li>
+              </ul>
             </li>
             {% if menu_active == 'sites' %}
             <li class="active" class="treeview">
@@ -142,7 +148,6 @@
               <a href="#">
                 <i class="fa fa-building-o"></i>
                 <span>Sites</span>
-                <small class="label pull-right bg-green">Coming Soon</small>
               </a>
               <ul class="treeview-menu">
                 <li><a href="#">Site 1</a></li>
