@@ -31,6 +31,7 @@
 								<thead>
 						            <tr>
 						                <th>Name</th>
+										<th>Asset Tag</th>
 						                <th>Mac Address</th>
 						                <th>JAMF Version</th>
 						                <th>Serial Number</th>
@@ -40,6 +41,7 @@
 						        <tfoot>
 						            <tr>
 						                <th>Name</th>
+										<th>Asset Tag</th>
 						                <th>Mac Address</th>
 						                <th>JAMF Version</th>
 						                <th>Serial Number</th>
@@ -50,6 +52,7 @@
 			               			{% for item in items %}
 			               			<tr role="row">
 			               				<td class="sorting_1">{{ item.name }}</td>
+										<td>{{ item.asset_tag }}</td>
 			               				<td>{{ item.mac_address }}</td>
 			               				<td>{{ item.jamf_version }}</td>
 			               				<td>{{ item.serial_number }}</td>
