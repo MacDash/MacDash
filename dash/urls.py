@@ -7,5 +7,6 @@ from . import views
 urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^devices/$', views.devices, name='devices'),
+    url(r'^singledevice/$', views.singledevice, name='singledevice'),
 ]
 

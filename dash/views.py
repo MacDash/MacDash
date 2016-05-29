@@ -24,3 +24,6 @@ def devices(request):
             comp_dict['last_contact_time_utc'] = 'Unknown'
         devices.append(comp_dict)
     return render(request, "list.html", {'items': devices, 'list_title': 'Computers', 'menu_active': 'devices'})
+    
+def singledevice(request):
+    return render(request, "singledevice.html")    
