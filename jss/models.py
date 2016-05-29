@@ -8,6 +8,15 @@ class Site(models.Model):
     def __str__(self):
         return self.name
 
+class ComputerApplication(models.Model):
+    name = models.CharField(max_length=300)
+    path = models.CharField(max_length=800)
+    version = models.CharField(max_length=400, null=True)
+
+    def __str__(self):
+        return '{name}_{version}'.format(name=self.name, version=self.version)
+
+
 class Computer(models.Model):
     computer_id = models.CharField(max_length=100000, null=True)
     alt_mac_address = models.CharField(max_length=20, null=True)
@@ -30,6 +39,7 @@ class Computer(models.Model):
     report_date_utc = models.DateField(null=True)
     serial_number = models.CharField(max_length=200, null=True)
     site = models.ForeignKey(Site, on_delete=models.CASCADE)
+    applications = models.ManyToManyField(ComputerApplication, max_length=200)
 
     def __str__(self):
         return self.name

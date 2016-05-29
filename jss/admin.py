@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Computer, Site
+from .models import Computer, Site, ComputerApplication
 
 
 class ComputerAdmin(admin.ModelAdmin):
@@ -30,5 +30,16 @@ class SiteAdmin(admin.ModelAdmin):
     def has_add_permission(self, request, obj=None):
         return False
 
+class ComputerApplicationsAdmin(admin.ModelAdmin):
+    search_fields = ('name', 'version', 'path')
+    list_display = ('name', 'version', 'path')
+
+    class Media:
+        js = ('/static/js/admin.js',)
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
 admin.site.register(Computer, ComputerAdmin)
 admin.site.register(Site, SiteAdmin)
+admin.site.register(ComputerApplication, ComputerApplicationsAdmin)

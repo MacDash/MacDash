@@ -10,5 +10,5 @@ class Command(BaseCommand):
     #     parser.add_argument('poll_id', nargs='+', type=int)
 
     def handle(self, *args, **options):
-        tasks.update_computers()
+        tasks.update_all_computers()
 
