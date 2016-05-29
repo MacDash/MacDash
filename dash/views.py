@@ -15,7 +15,6 @@ def home(request):
 @login_required
 def devices(request):
     devices = list()
-    computers = Computer.objects.all()
     for computer in Computer.objects.all():
         comp_dict = computer.__dict__
         if computer.last_contact_time_utc:
@@ -23,4 +22,16 @@ def devices(request):
         else:
             comp_dict['last_contact_time_utc'] = 'Unknown'
         devices.append(comp_dict)
-    return render(request, "list.html", {'items': devices, 'list_title': 'Computers', 'menu_active': 'devices'})
+    context = {
+        'items': devices,
+        'fields': (
+            ('name', 'Name'), 
+            ('asset_tag', 'Asset Tag'),
+            ('mac_address', 'MAC Address'),
+            ('jamf_version', 'JAMF Version'),
+            ('last_contact_time_utc', 'Last Check-in')
+        ),
+        'list_title': 'Computers',
+        'menu_active': 'devices'
+    }
+    return render(request, "list.html", context)

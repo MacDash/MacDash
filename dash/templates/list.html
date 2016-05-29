@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load dash_extras %}
 {% block content %}
     <!-- DataTables style -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
@@ -31,34 +32,25 @@
 			           	<div class="col-sm-12">
 			           		<table id="devices" class="table table-striped table-bordered" cellspacing="0" width="100%">
 								<thead>
-						            <tr>
-						                <th>Name</th>
-										<th>Asset Tag</th>
-						                <th>Mac Address</th>
-						                <th>JAMF Version</th>
-						                <th>Serial Number</th>
-						                <th>Last Check-in</th>
-						            </tr>
+                                    <tr>
+                                    {% for field in fields %}
+                                        <th>{{ field.1 }}</th>
+                                    {% endfor %}
+                                    </tr>
 						        </thead>
 						        <tfoot>
-						            <tr>
-						                <th>Name</th>
-										<th>Asset Tag</th>
-						                <th>Mac Address</th>
-						                <th>JAMF Version</th>
-						                <th>Serial Number</th>
-						                <th>Last Check-in</th>
-						            </tr>
+                                    <tr>
+                                    {% for field in fields %}
+                                        <th>field.1</th>
+                                    {% endfor %}
+                                    </tr>
 						        </tfoot>
 			               		<tbody>
 			               			{% for item in items %}
 			               			<tr role="row">
-			               				<td class="sorting_1">{{ item.name }}</td>
-										<td>{{ item.asset_tag }}</td>
-			               				<td>{{ item.mac_address }}</td>
-			               				<td>{{ item.jamf_version }}</td>
-			               				<td>{{ item.serial_number }}</td>
-			               				<td>{{ item.last_contact_time_utc }}</td>
+                                        {% for field in fields %}
+                                            <td>{{ item|key:field.0 }}</td>
+                                        {% endfor %}
 			               			</tr>
 			               			{% endfor %}
 			                	</tbody>
