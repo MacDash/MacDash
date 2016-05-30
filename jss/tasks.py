@@ -33,7 +33,10 @@ def update_computer(jss_id, name):
         jss_site, _ = Site.objects.get_or_create(**jss_site_details)
     else:
         jss_site = None
-    computer, _ = Computer.objects.get_or_create(computer_id=jss_computer_id, site=jss_site, **jss_computer_general)
+    computer, _ = Computer.objects.get_or_create(computer_id=jss_computer_id, site=jss_site)
+    for field, val in jss_computer_general.items():
+        setattr(computer, field, val)
+    computer.save()
 
     print('Syncing {} applications'.format(len(jss_computer_applications)))
     for application in jss_computer_applications:

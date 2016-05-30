@@ -12,7 +12,7 @@ class ComputerAdmin(admin.ModelAdmin):
     def has_add_permission(self, request, obj=None):
         return False
 
-class ComputersInline(admin.StackedInline):
+class ComputersSiteInline(admin.StackedInline):
     model = Computer
     can_delete = False
     verbose_name_plural = 'profile'
@@ -22,7 +22,7 @@ class ComputersInline(admin.StackedInline):
 
 class SiteAdmin(admin.ModelAdmin):
     search_fields = ('name',)
-    inlines = (ComputersInline, )
+    inlines = (ComputersSiteInline, )
 
     class Media:
         js = ('/static/js/admin.js',)
@@ -33,6 +33,7 @@ class SiteAdmin(admin.ModelAdmin):
 class ComputerApplicationsAdmin(admin.ModelAdmin):
     search_fields = ('name', 'version', 'path')
     list_display = ('name', 'version', 'path')
+    # inlines = (ComputersInline,)
 
     class Media:
         js = ('/static/js/admin.js',)
