@@ -140,6 +140,16 @@
 				<li><a href=""><i class="fa fa-circle-o"></i> Server</a></li>
               </ul>
             </li>
+            {% if menu_active == 'applications' %}
+            <li class="active">
+            {% else %}
+            <li>
+            {% endif %}
+              <a href="{% url 'applications' %}">
+                <i class="fa fa-magic"></i> 
+                <span>Applications</span>
+              </a>
+            </li>
             {% if menu_active == 'sites' %}
             <li class="active" class="treeview">
             {% else %}
