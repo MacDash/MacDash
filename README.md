@@ -25,8 +25,25 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-## Customizing the UI
+## Custom Settings
+Create your own custom settings file
+```
+cp example_custom_settings.py custom_settings.py
+```
 
 #### Add Company Name before MacDash
-- Create a file called `custom_settings.py` at the root directory.
-- Add the key `MACDASH_BRANDING` to `custom_settings.py`
+Set the key `MACDASH_BRANDING` in `custom_settings.py`
+
+#### Add JSS Sync Settings
+**WARNING: Currently you must set these values otherwise the sync command will not run**
+Set the values for the following keys in `custom_settings.py`.
+```
+JSS_URL
+JSS_USER
+JSS_PASS
+```
+These can also be environment variables by including `import os` at the top of `custom_settings.py` and change the following values in `custom_settings.py` to be exactly as follows:
+```
+JSS_URL = os.environ['JSS_URL']
+JSS_USER = os.environ['JSS_USER']
+JSS_PASS = os.environ['JSS_PASS']

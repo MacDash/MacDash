@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% block content %}
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Mac-124190
+          </h1>
+        	<ol class="breadcrumb">
+          	<li><a href="{% url 'home' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+  			<li><a href="{% url 'devices' %}"> Devices</a></li>
+          	<li class="active">Single Device</li>
+        	</ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="box">
+                <div class="box-body">
+		          <div class="row">
+		             <div class="col-md-4 col-sm-6 col-xs-12">
+					   <div class="box">
+			              <div class="box-body no-padding">
+			                <table class="table table-striped">
+			                  <tbody>
+			                  <tr>
+			                    <td><strong>Name:</strong></td>
+			                    <td>Mac-124190</td>
+			                  </tr>	  
+			                  <tr>
+			                    <td><strong>Serial #:</strong></td>
+			                    <td>C02MT1PLFD59</td>
+			                  </tr>
+			                  <tr>
+			                    <td><strong>Model:</strong></td>
+			                    <td>MacBook Pro (Retina 15-inch, Late 2013)</td>
+			                  </tr>
+			                  <tr>
+			                    <td><strong>OS:</strong></td>
+			                    <td>10.11.5 El Capitan</td>
+			                  </tr>
+			                  <tr>
+			                    <td><strong>Asset #:</strong></td>
+			                    <td>124190</td>
+			                  </tr>
+			                </tbody></table>
+			              </div>
+			              <!-- /.box-body -->
+			            </div>
+		            </div><!-- /.col -->  
+		            <div class="col-md-4 col-sm-6 col-xs-12">
+					  <div class="">
+		              <img src="/static/images/MacBook_Pro_Retina.png" class="img-responsive" alt="MacBook Pro Retina">
+				      </div>
+		            </div><!-- /.col -->
+ 		             <div class="col-md-4 col-sm-6 col-xs-12">
+ 					   <div class="box">
+ 			              <div class="box-body no-padding">
+ 			                <table class="table table-striped">
+ 			                  <tbody>
+ 			                  <tr>
+ 			                    <td><strong>User:</strong></td>
+ 			                    <td>Chris Sheppard</td>
+ 			                  </tr>
+ 			                  <tr>
+ 			                    <td><strong>Location:</strong></td>
+ 			                    <td>FCC</td>
+ 			                  </tr>
+ 			                  <tr>
+ 			                    <td><strong>IP Address:</strong></td>
+ 			                    <td>192.168.14.133</td>
+ 			                  </tr>
+ 			                  <tr>
+ 			                    <td><strong>MAC Address:</strong></td>
+ 			                    <td>3C:15:C2:D9:AA:FC</td>
+ 			                  </tr>
+			                  <tr>
+			                    <td><strong>Warranty:</strong></td>
+			                    <td>Expiration Date: June 24, 2017</td>
+			                  </tr>
+ 			                </tbody></table>
+ 			              </div>
+ 			              <!-- /.box-body -->
+ 			            </div>
+ 		            </div><!-- /.col -->
+                  </div><!-- /.row -->
+                </div><!-- ./box-body -->
+                <div class="box-footer">
+                  <div class="row">
+                    <div class="col-sm-2 col-xs-6">
+                      <div class="description-block border-right">
+                        <i class="fa fa-calendar fa-2x"></i>
+                        <h5 class="description-header text-green">3 DAYS</h5>
+                        <span class="description-text">CHECK-IN</span>
+                      </div><!-- /.description-block -->
+                    </div><!-- /.col -->
+                    <div class="col-sm-2 col-xs-6">
+                      <div class="description-block border-right">
+                        <i class="fa fa-battery-3 fa-2x"></i>
+                        <h5 class="description-header text-green">75%</h5>
+                        <span class="description-text">Battery</span>
+                      </div><!-- /.description-block -->
+                    </div><!-- /.col -->
+                    <div class="col-sm-2 col-xs-6">
+                      <div class="description-block border-right">
+                        <i class="fa fa-hdd-o fa-2x"></i>
+                        <h5 class="description-header text-green">250 GB</h5>
+                        <span class="description-text">Storage</span>
+                      </div><!-- /.description-block -->
+                    </div><!-- /.col -->
+                    <div class="col-sm-2 col-xs-6">
+                      <div class="description-block border-right">
+                        <i class="fa fa-info-circle fa-2x"></i>
+                        <h5 class="description-header text-green">16 GB</h5>
+                        <span class="description-text">Memory</span>
+                      </div><!-- /.description-block -->
+                    </div><!-- /.col -->
+                    <div class="col-sm-2 col-xs-6">
+                      <div class="description-block border-right">
+                        <i class="fa fa-bolt fa-2x"></i>
+                        <h5 class="description-header text-green">Low</h5>
+                        <span class="description-text">Workload</span>
+                      </div><!-- /.description-block -->
+                    </div><!-- /.col -->
+                    <div class="col-sm-2 col-xs-6">
+                      <div class="description-block border-right"> 
+                        <i class="fa fa-history fa-2x"></i>
+                        <h5 class="description-header text-red">15 Days</h5>
+                        <span class="description-text">Backup</span>
+                      </div><!-- /.description-block -->
+                    </div>
+                  </div><!-- /.row -->
+                </div><!-- /.box-footer -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+          <!-- Device Details/Applications Installed -->
+		  <div class="nav-tabs-custom">
+           <ul class="nav nav-tabs">
+             <li class="active"><a href="#tab_1" data-toggle="tab"><strong>Device Details</strong></a></li>
+             <li><a href="#tab_2" data-toggle="tab"><strong>Installed Applications</strong></a></li>
+           </ul>
+           <div class="tab-content">
+             <div class="tab-pane active" id="tab_1">
+               <b>Testing 1-2-3</b>
+
+               <p>This is a test, this is only a test.
+             </div>
+             <!-- /.tab-pane -->
+             <div class="tab-pane" id="tab_2">
+                 <b>Testing 1-2-3</b>
+
+                 <p>This is a test, this is only a test.
+               </div>
+             <!-- /.tab-pane -->
+           </div>
+           <!-- /.tab-content -->
+         </div>
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+{% endblock %}

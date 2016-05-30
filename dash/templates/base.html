@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     {% if MACDASH_BRANDING %}
-    <title>{{ MACDASH_BRANDING }}MacDash | Login</title>
+    <title>{{ MACDASH_BRANDING }}MacDash</title>
     {% else %}
     <title>MacDash</title>
     {% endif %}
@@ -25,6 +25,8 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{% static 'dist/css/macdash.min.css' %}">
     <link rel="stylesheet" href="{% static 'dist/css/skins/_all-skins.min.css' %}">
+	<!-- DataTables Style -->
+	<!-- ><link rel="stylesheet" href="{% static 'plugins/datatables/dataTables.bootstrap.min.css' %}"> -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,7 +42,7 @@
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="{{ index }}" class="logo">
+        <a href="{% url 'home' %}" class="logo">
           {% if MACDASH_BRANDING %}
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>{{ MACDASH_BRANDING.0 }}</b>MD</span>
@@ -68,14 +70,14 @@
                 <!-- Menu Toggle Button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <!-- The user image in the navbar-->
-                  <img src="static/dist/img/avatar5.png" class="user-image" alt="User Image">
+                  <img src="{% static 'dist/img/avatar5.png' %}" class="user-image" alt="User Image">
                   <!-- hidden-xs hides the username on small devices so only the image appears. -->
                   <span class="hidden-xs">{{ user.get_username }}</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- The user image in the menu -->
                   <li class="user-header">
-                    <img src="static/dist/img/avatar5.png" class="img-circle" alt="User Image">
+                    <img src="{% static 'dist/img/avatar5.png' %}" class="img-circle" alt="User Image">
                     <p>
                       {{ user.get_username }}
                     </p>
@@ -108,28 +110,59 @@
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
 
-          <!-- search form (Optional) -->
-          <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Search...">
-              <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-              </span>
-            </div>
-          </form>
-          <!-- /.search form -->
-
           <!-- Sidebar Menu -->
           <ul class="sidebar-menu">
             <li class="header">Menu</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="/"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-            <li><a href="#"><i class="fa fa-desktop"></i> <span>Devices</span><small class="label pull-right bg-green">Coming Soon</small></a></li>
-            <li class="treeview">
-              <a href="#"><i class="fa fa-building-o"></i> <span>Sites</span><small class="label pull-right bg-green">Coming Soon</small></i></a>
+            {% if menu_active == 'dashboard' %}
+            <li class="active">
+            {% else %}
+            <li>
+            {% endif %}
+              <a href="{% url 'home' %}">
+                <i class="fa fa-dashboard"></i> 
+                <span>Dashboard</span>
+              </a>
+            </li>
+            {% if menu_active == 'devices' %}
+            <li class="active">
+            {% else %}
+            <li>
+            {% endif %}
+              <a href="">
+                <i class="fa fa-desktop"></i> 
+                <span>Devices</span>
+              </a>
               <ul class="treeview-menu">
-                <li><a href="#">Site 1</a></li>
-                <li><a href="#">Site 2</a></li>
+				<li><a href="{% url 'devices' %}"><i class="fa fa-circle-o"></i> All Devices</a></li>
+                <li><a href=""><i class="fa fa-circle-o"></i> Mac</a></li>
+                <li><a href=""><i class="fa fa-circle-o"></i> iOS</a></li>
+				<li><a href=""><i class="fa fa-circle-o"></i> Server</a></li>
+              </ul>
+            </li>
+            {% if menu_active == 'applications' %}
+            <li class="active">
+            {% else %}
+            <li>
+            {% endif %}
+              <a href="{% url 'applications' %}">
+                <i class="fa fa-magic"></i> 
+                <span>Applications</span>
+              </a>
+            </li>
+            {% if menu_active == 'sites' %}
+            <li class="active" class="treeview">
+            {% else %}
+            <li class="treeview">
+            {% endif %}
+              <a href="#">
+                <i class="fa fa-building-o"></i>
+                <span>Sites</span>
+              </a>
+              <ul class="treeview-menu">
+				<li><a href=""><i class="fa fa-circle-o"></i> Site 1</a></li>
+				<li><a href=""><i class="fa fa-circle-o"></i> Site 2</a></li>
+				<li><a href=""><i class="fa fa-circle-o"></i> Site 3</a></li>
               </ul>
             </li>
           </ul><!-- /.sidebar-menu -->
@@ -216,5 +249,18 @@
     <script src="{% static 'dist/js/pages/macdash.js' %}"></script>
 	<script src="{% static 'dist/js/app.js' %}" type="text/javascript"></script>
 	<script src="{% static 'dist/js/macdash.js' %}"></script>
+    <!-- DataTables -->
+    <script src="{% static 'plugins/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'plugins/datatables/dataTables.bootstrap.min.js' %}"></script>
+	<script src="https://cdn.datatables.net/buttons/1.2.1/js/dataTables.buttons.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+	<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+	<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.html5.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.print.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.colVis.min.js"></script>
+    <!-- FastClick -->
+    <script src="{% static 'plugins/fastclick/fastclick.min.js' %}"></script>
   </body>
 </html>
