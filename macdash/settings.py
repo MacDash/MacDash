@@ -173,3 +173,24 @@ try:
         TEMPLATE_VISIBLE_SETTINGS.append('MACDASH_BRANDING')
 except ImportError:
     pass
+
+# Database
+# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
+if USE_POSTGRES:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': POSTGRES_DB_NAME,
+            'USER': POSTGRES_USERNAME,
+            'PASSWORD': POSTGRES_PASSWORD,
+            'HOST': POSTGRES_HOST,
+            'PORT': POSTGRES_PORT,
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }

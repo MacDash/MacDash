@@ -46,6 +46,7 @@ def applications(request):
     context = {
         'items': applications,
         'fields': (
+            ('id', 'ID'),
             ('name', 'Name'), 
             ('version', 'Version'),
             ('path', 'Path'),
