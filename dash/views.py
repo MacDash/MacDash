@@ -1,11 +1,20 @@
-from django.shortcuts import render
-# from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 # from django.conf import settings
 # from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.template import RequestContext
+# from django.template import RequestContext
 
 from jss.models import Computer, ComputerApplication
+
+
+def _format_device(computer):
+    comp_dict = computer.__dict__
+    if computer.last_contact_time_utc:
+        comp_dict['last_contact_time_utc'] = computer.last_contact_time_utc.strftime('%Y-%m-%d %H:%M:%S')
+    else:
+        comp_dict['last_contact_time_utc'] = 'Unknown'
+    comp_dict['site'] = computer.site.name
+    return comp_dict
 
 # Create your views here.
 @login_required
@@ -15,18 +24,10 @@ def home(request):
 
 @login_required
 def devices(request):
-    devices = list()
-    for computer in Computer.objects.all():
-        comp_dict = computer.__dict__
-        if computer.last_contact_time_utc:
-            comp_dict['last_contact_time_utc'] = computer.last_contact_time_utc.strftime('%Y-%m-%d %H:%M:%S')
-        else:
-            comp_dict['last_contact_time_utc'] = 'Unknown'
-        comp_dict['site'] = computer.site.name
-        devices.append(comp_dict)
+    devices = [_format_device(computer) for computer in Computer.objects.all()]
     context = {
         'items': devices,
-        'fields': (
+        'columns': (
             ('name', 'Name'), 
             ('asset_tag', 'Asset Tag'),
             ('mac_address', 'MAC Address'),
@@ -34,7 +35,7 @@ def devices(request):
             ('last_contact_time_utc', 'Last Check-in'),
             ('site', 'Site')
         ),
-        'list_title': 'Computers',
+        'page_title': 'Computers',
         'menu_active': 'devices'
     }
     return render(request, "list.html", context)
@@ -42,16 +43,44 @@ def devices(request):
 
 @login_required
 def applications(request):
-    applications = [app.__dict__ for app in ComputerApplication.objects.all()]
+    applications = list()
+    for app in ComputerApplication.objects.all():
+        application = app.__dict__
+        application['install_count'] = app.computers.count()
+        applications.append(application)
+    # applications = [app.__dict__ for app in ComputerApplication.objects.all()]
     context = {
         'items': applications,
-        'fields': (
-            ('id', 'ID'),
+        'columns': (
             ('name', 'Name'), 
             ('version', 'Version'),
             ('path', 'Path'),
+            ('install_count', 'Install Count')
         ),
-        'list_title': 'Applications',
+        'link_column': ('install_count', 'application-installed'),
+        'page_title': 'Applications',
+        # 'menu_active': 'devices'
+    }
+    return render(request, "list.html", context)
+
+@login_required
+def application_installed_list(request, pk):
+    application = get_object_or_404(ComputerApplication, pk=pk)
+    computers = [_format_device(computer) for computer in application.computers.all()]
+    page_title = 'Computers with {name} ({version})'.format(
+        name=application.name, version=application.version
+    )
+    context = {
+        'items': computers,
+        'columns': (
+            ('name', 'Name'), 
+            ('asset_tag', 'Asset Tag'),
+            ('mac_address', 'MAC Address'),
+            ('jamf_version', 'JAMF Version'),
+            ('last_contact_time_utc', 'Last Check-in'),
+            ('site', 'Site')
+        ),
+        'page_title': page_title,
         # 'menu_active': 'devices'
     }
     return render(request, "list.html", context)
