@@ -36,7 +36,8 @@ def devices(request):
             ('site', 'Site')
         ),
         'page_title': 'Computers',
-        'menu_active': 'devices'
+        'menu_active': 'devices',
+        'link_column': ('name', 'singledevice'),
     }
     return render(request, "list.html", context)
 
@@ -81,11 +82,17 @@ def application_installed_list(request, pk):
             ('site', 'Site')
         ),
         'page_title': page_title,
-        # 'menu_active': 'devices'
+        'link_column': ('name', 'singledevice'),
+        'menu_active': 'devices'
     }
     return render(request, "list.html", context)
 
 
 @login_required  
-def singledevice(request):
-    return render(request, "singledevice.html")    
+def singledevice(request, pk):
+    computer = get_object_or_404(Computer, pk=pk)
+    computer_dict = _format_device(computer)
+    context = {
+        'device': computer_dict,
+    }
+    return render(request, "singledevice.html", context)    
