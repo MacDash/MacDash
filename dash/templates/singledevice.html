@@ -5,7 +5,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Mac-124190
+            {{ device.name }}
           </h1>
         	<ol class="breadcrumb">
           	<li><a href="{% url 'home' %}"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -28,23 +28,23 @@
 			                  <tbody>
 			                  <tr>
 			                    <td><strong>Name:</strong></td>
-			                    <td>Mac-124190</td>
+			                    <td>{{ device.name }}</td>
 			                  </tr>	  
 			                  <tr>
 			                    <td><strong>Serial #:</strong></td>
-			                    <td>C02MT1PLFD59</td>
+			                    <td>{{ device.serial_number }}</td>
 			                  </tr>
 			                  <tr>
 			                    <td><strong>Model:</strong></td>
-			                    <td>MacBook Pro (Retina 15-inch, Late 2013)</td>
+			                    <td>{{ device.model }}</td>
 			                  </tr>
 			                  <tr>
 			                    <td><strong>OS:</strong></td>
-			                    <td>10.11.5 El Capitan</td>
+			                    <td>{{ device.os_version }}</td>
 			                  </tr>
 			                  <tr>
 			                    <td><strong>Asset #:</strong></td>
-			                    <td>124190</td>
+			                    <td>{{ device.asset_tag }}</td>
 			                  </tr>
 			                </tbody></table>
 			              </div>
@@ -63,23 +63,23 @@
  			                  <tbody>
  			                  <tr>
  			                    <td><strong>User:</strong></td>
- 			                    <td>Chris Sheppard</td>
+ 			                    <td>{{ device.real_name }}</td>
  			                  </tr>
  			                  <tr>
  			                    <td><strong>Location:</strong></td>
- 			                    <td>FCC</td>
+ 			                    <td>{{ device.building }}</td>
  			                  </tr>
  			                  <tr>
  			                    <td><strong>IP Address:</strong></td>
- 			                    <td>192.168.14.133</td>
+ 			                    <td>{{ device.ip_address}}</td>
  			                  </tr>
  			                  <tr>
  			                    <td><strong>MAC Address:</strong></td>
- 			                    <td>3C:15:C2:D9:AA:FC</td>
+ 			                    <td>{{ device.mac_address }}</td>
  			                  </tr>
 			                  <tr>
-			                    <td><strong>Warranty:</strong></td>
-			                    <td>Expiration Date: June 24, 2017</td>
+			                    <td><strong>Warranty Exp:</strong></td>
+			                    <td>{{ device.warranty_expires_utc }}</td>
 			                  </tr>
  			                </tbody></table>
  			              </div>
@@ -94,7 +94,7 @@
                       <div class="description-block border-right">
                         <i class="fa fa-calendar fa-2x"></i>
                         <h5 class="description-header text-green">3 DAYS</h5>
-                        <span class="description-text">CHECK-IN</span>
+                        <span class="description-text">Last Check-in</span>
                       </div><!-- /.description-block -->
                     </div><!-- /.col -->
                     <div class="col-sm-2 col-xs-6">
@@ -114,7 +114,7 @@
                     <div class="col-sm-2 col-xs-6">
                       <div class="description-block border-right">
                         <i class="fa fa-info-circle fa-2x"></i>
-                        <h5 class="description-header text-green">16 GB</h5>
+                        <h5 class="description-header text-green">{{ device.total_ram }}</h5>
                         <span class="description-text">Memory</span>
                       </div><!-- /.description-block -->
                     </div><!-- /.col -->
@@ -128,7 +128,7 @@
                     <div class="col-sm-2 col-xs-6">
                       <div class="description-block border-right"> 
                         <i class="fa fa-history fa-2x"></i>
-                        <h5 class="description-header text-red">15 Days</h5>
+                        <h5 class="description-header text-green">15 Days</h5>
                         <span class="description-text">Backup</span>
                       </div><!-- /.description-block -->
                     </div>

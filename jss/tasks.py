@@ -17,24 +17,41 @@ def update_computer(jss_id, name):
     jss_computer_details = request.get('computer')
     jss_computer_general = jss_computer_details.get('general')
     jss_computer_id = jss_computer_general.pop('id')
+    
+    jss_computer_purchasing = jss_computer_details.get('purchasing')
+    jss_computer_hardware = jss_computer_details.get('hardware')
+    jss_computer_info = dict()
+    jss_computer_info.update(jss_computer_general)
+    jss_computer_info.update(jss_computer_purchasing)
+    jss_computer_info.update(jss_computer_hardware)
+
+    register = template.Library()
+
+
+    jss_computer_location = jss_computer_details.get('location')
+    jss_computer_info = dict()
+    jss_computer_info.update(jss_computer_general)
+    jss_computer_info.update(jss_computer_location)
+
 
     jss_computer_software = jss_computer_details.get('software')
     jss_computer_applications = jss_computer_software.get('applications')
 
     field_names = [field.name for field in Computer._meta.get_fields()]
-    for key, value in jss_computer_general.copy().items():
+    for key, value in jss_computer_info.copy().items():
         if key not in field_names or value in ('', None):
-            del jss_computer_general[key]
+            del jss_computer_info[key]
         elif 'utc' in key:
-            jss_computer_general[key] = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f%z')
+            jss_computer_info[key] = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f%z')
+     
 
-    jss_site_details = jss_computer_general.pop('site')
+    jss_site_details = jss_computer_info.pop('site')
     if jss_site_details:
         jss_site, _ = Site.objects.get_or_create(**jss_site_details)
     else:
         jss_site = None
     computer, _ = Computer.objects.get_or_create(computer_id=jss_computer_id, site=jss_site)
-    for field, val in jss_computer_general.items():
+    for field, val in jss_computer_info.items():
         setattr(computer, field, val)
     computer.save()
 
