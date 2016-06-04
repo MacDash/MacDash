@@ -38,6 +38,12 @@ class Computer(models.Model):
     remote_management = models.TextField(null=True)
     report_date_utc = models.DateField(null=True)
     serial_number = models.CharField(max_length=200, null=True)
+    warranty_expires_utc = models.DateField(null=True)
+    os_version = models.CharField(max_length=200, null=True)
+    model = models.CharField(max_length=200, null=True)
+    total_ram_mb = models.CharField(max_length=200, null=True)
+    real_name = models.CharField(max_length=200, null=True)
+    building = models.CharField(max_length=200, null=True)
     site = models.ForeignKey(Site, on_delete=models.CASCADE, null=True, related_name='computers')
     applications = models.ManyToManyField(ComputerApplication, max_length=200, related_name='computers')
 
