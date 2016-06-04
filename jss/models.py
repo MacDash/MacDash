@@ -41,7 +41,7 @@ class Computer(models.Model):
     warranty_expires_utc = models.DateField(null=True)
     os_version = models.CharField(max_length=200, null=True)
     model = models.CharField(max_length=200, null=True)
-    total_ram = models.CharField(max_length=200, null=True)
+    total_ram_mb = models.CharField(max_length=200, null=True)
     real_name = models.CharField(max_length=200, null=True)
     building = models.CharField(max_length=200, null=True)
     site = models.ForeignKey(Site, on_delete=models.CASCADE, null=True, related_name='computers')

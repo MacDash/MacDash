@@ -25,11 +25,8 @@ def update_computer(jss_id, name):
     jss_computer_info.update(jss_computer_purchasing)
     jss_computer_info.update(jss_computer_hardware)
 
-    register = template.Library()
-
 
     jss_computer_location = jss_computer_details.get('location')
-    jss_computer_info = dict()
     jss_computer_info.update(jss_computer_general)
     jss_computer_info.update(jss_computer_location)
 
