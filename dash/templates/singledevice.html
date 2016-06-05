@@ -175,9 +175,9 @@
                     <tr role="row">
                       {% for column in columns %}
                         {% if column.0 == link_column.0 %}
-                          <td><a href="{% url link_column.1 item.id %}">{{ item|key:column.0 }}</a>
+                          <td><a href="{% url link_column.1 item.id %}">{{ item|getattribute:column.0 }}</a>
                         {% else %}
-                          <td>{{ item|key:column.0 }}</td>
+                          <td>{{ item|getattribute:column.0 }}</td>
                         {% endif %}
                       {% endfor %}
                     </tr>
