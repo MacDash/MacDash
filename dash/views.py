@@ -92,9 +92,10 @@ def application_installed_list(request, pk):
 def singledevice(request, pk):
     computer = get_object_or_404(Computer, pk=pk)
     computer_dict = _format_device(computer)
+    installed_applications = [application.__dict__ for application in computer.applications.all()]
     context = {
         'device': computer_dict,
-        'items': applications,
+        'items': installed_applications,
         'columns': (
             ('name', 'Name'), 
             ('version', 'Version'),
