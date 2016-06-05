@@ -6,16 +6,6 @@ from django.contrib.auth.decorators import login_required
 
 from jss.models import Computer, ComputerApplication
 
-
-# def _format_device(computer):
-#     comp_dict = computer.__dict__
-#     if computer.last_contact_time_utc:
-#         comp_dict['last_contact_time_utc'] = computer.last_contact_time_utc.strftime('%Y-%m-%d %H:%M:%S')
-#     else:
-#         comp_dict['last_contact_time_utc'] = 'Unknown'
-#     comp_dict['site'] = computer.site.name
-#     return comp_dict
-
 # Create your views here.
 @login_required
 def home(request):
@@ -90,7 +80,7 @@ def singledevice(request, pk):
             ('version', 'Version'),
             ('path', 'Path'),
         ),
-        'link_column': ('application-installed'),
+        'link_column': ('name', 'application-installed'),
         'page_title': 'Applications',
 
     }
