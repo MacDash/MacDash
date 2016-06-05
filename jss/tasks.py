@@ -33,7 +33,7 @@ def format_jss_computer(jss_computer, sections=None, no_delete=list()):
     
     return formatted_computer_info
 
-# @threads(5)
+@threads(5)
 def update_computer(jss_id, name):
     print('Syncing computer: {}'.format(name))
     request = casper_client.lookup_by_id(jss_id).json()
@@ -66,7 +66,7 @@ def update_computer(jss_id, name):
         computer.save()
 
     # Iterate through all applications and get or create a 'ComputerApplication' object
-    print('Syncing {} applications'.format(len(jss_computer_applications)))
+    print('Syncing {} applications for {}'.format(len(jss_computer_applications), name))
     for application in jss_computer_applications:
         app, _ = ComputerApplication.objects.get_or_create(**application)
         computer.applications.add(app)
