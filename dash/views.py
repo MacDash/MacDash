@@ -94,5 +94,14 @@ def singledevice(request, pk):
     computer_dict = _format_device(computer)
     context = {
         'device': computer_dict,
+        'items': applications,
+        'columns': (
+            ('name', 'Name'), 
+            ('version', 'Version'),
+            ('path', 'Path'),
+        ),
+        'link_column': ('application-installed'),
+        'page_title': 'Applications',
+
     }
     return render(request, "singledevice.html", context)    
