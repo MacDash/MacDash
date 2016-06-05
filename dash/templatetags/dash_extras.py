@@ -8,15 +8,9 @@ register = template.Library()
 def key(d, key_name):
     return d[key_name]
 
-sentinel = object()
 @register.filter(name='getattribute')
-def getattribute(obj, attr, default=sentinel):
-    if default is sentinel:
-        _getattr = getattr
-    else:
-        def _getattr(obj, name):
-            return getattr(obj, name, default)
-    return functools.reduce(_getattr, [obj]+attr.split('.'))
+def getattribute(obj, attr):
+    return functools.reduce(getattr, [obj]+attr.split('.'))
 
 @register.filter(name='sizeof_fmt')
 def sizeof_fmt(num, suffix='B'):
