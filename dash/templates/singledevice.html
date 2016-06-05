@@ -118,7 +118,7 @@
                     <div class="col-sm-2 col-xs-6">
                       <div class="description-block border-right">
                         <i class="fa fa-info-circle fa-2x"></i>
-                        <h5 class="description-header text-green">{{ device.total_ram_mb }}</h5>
+                        <h5 class="description-header text-green">{{ device.total_ram_mb|sizeof_fmt }}</h5>
                         <span class="description-text">Memory</span>
                       </div><!-- /.description-block -->
                     </div><!-- /.col -->
