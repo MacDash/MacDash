@@ -1,4 +1,5 @@
 import functools
+from math import floor
 
 from django import template
 
@@ -20,3 +21,18 @@ def sizeof_fmt(num, suffix='B'):
             return "%3.1f%s%s" % (num, unit, suffix)
         num /= 1024.0
     return "%.1f%s%s" % (num, 'Yi', suffix)
+
+@register.filter(name='mult')
+def mult(value, arg):
+    "Multiplies the arg and the value"
+    return int(value) * int(arg)
+
+@register.filter(name='sub')
+def sub(value, arg):
+    "Subtracts the arg from the value"
+    return int(value) - int(arg)
+
+@register.filter(name='div')
+def div(value, arg):
+    "Divides the value by the arg"
+    return floor(int(value) / int(arg))

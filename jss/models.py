@@ -1,3 +1,4 @@
+from django.contrib.postgres.fields import JSONField
 from django.db import models
 
 # Create your models here.
@@ -45,7 +46,16 @@ class Computer(models.Model):
     real_name = models.CharField(max_length=200, null=True)
     building = models.CharField(max_length=200, null=True)
     site = models.ForeignKey(Site, on_delete=models.CASCADE, null=True, related_name='computers')
-    applications = models.ManyToManyField(ComputerApplication, max_length=200, related_name='computers')
+    storage = JSONField()
+    applications = models.ManyToManyField(
+        ComputerApplication, max_length=200, related_name='computers'
+    )
+
+    @property
+    def primary_storage_size(self):
+        for device in self.storage:
+            if device.get('disk') == 'disk0':
+                return device.get('size')
 
     def __str__(self):
         return self.name

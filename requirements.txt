@@ -6,3 +6,4 @@ redis==2.10.3
 django-debug-toolbar==1.4
 django-settings-context-processor==0.2
 requests==2.10.0
+tomorrow==0.2.4

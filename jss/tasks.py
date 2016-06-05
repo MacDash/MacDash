@@ -45,7 +45,6 @@ def update_computer(jss_id, name):
     jss_computer_info = format_jss_computer(
         request, sections=jss_computer_sections, no_delete=included_extra_fields
     )
-    print(jss_computer_info.keys())
 
     # remove the jss computer id, site and applications details from 'jss_computer_info'. 
     # We'll need them to be separate from the rest of the fields
