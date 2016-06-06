@@ -37,7 +37,7 @@ def format_jss_computer(jss_computer, sections=list(), no_delete=list()):
     
     return formatted_computer_info
 
-@threads(75)
+@threads(5)
 def update_computer(jss_id, name):
     print('Syncing computer: {}'.format(name))
     request = casper_client.lookup_by_id(jss_id).json()
