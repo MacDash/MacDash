@@ -204,10 +204,12 @@
                   <table class="table table-striped">
                     <tbody>
                     {% for ea in device.extension_attributes %}
-                      <tr>
-                        <td><strong>{{ ea|key:"name" }}</strong></td>
-                        <td>{{ ea|key:"value" }}</td>
-                      </tr>
+                      {% if ea|key:"name" not in HIDDEN_EAS%}
+                        <tr>
+                          <td><strong>{{ ea|key:"name" }}</strong></td>
+                          <td>{{ ea|key:"value" }}</td>
+                        </tr>
+                      {% endif %}
                     {% endfor %}
                     </tbody>
                   </table>
