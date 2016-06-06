@@ -58,5 +58,11 @@ class Computer(models.Model):
             if device.get('disk') == 'disk0':
                 return device.get('size')
 
+    def get_ea_value(self, ea_name):
+        for ea in self.extension_attributes:
+            if ea.get('name') == ea_name:
+                return ea.get('value')
+        return ''
+
     def __str__(self):
         return self.name

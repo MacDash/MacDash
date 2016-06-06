@@ -9,7 +9,9 @@ register = template.Library()
 
 @register.filter(name='key')
 def key(d, key_name):
-    return d[key_name]
+    if d is None:
+        return None
+    return d.get(key_name)
 
 
 @register.filter(name='getattribute')
@@ -50,6 +52,12 @@ def floor(value):
     return math.floor(value)
 
 
+@register.filter(name='strptime')
+def formatdate(date, pattern=None):
+    if pattern == None:
+        pattern = '%Y-%m-%d %H:%M:%S'
+    return datetime.strptime(date, pattern)
+
 @register.filter(name='dayssince')
 def dayssince(date):
     date_diff = datetime.now(tz=date.tzinfo) - date
@@ -61,9 +69,5 @@ def dayssince(date):
         return '{} Days'.format(date_diff.days)
 
 @register.filter(name='extensionattribute')
-def extension_attribute(obj, arg):
-    if hasattr(obj, 'extension_attributes'):
-        for ea in getattr(obj, 'extension_attributes'):
-            if ea.get('name') == arg:
-                return ea.get('value')
-    return ''
+def extension_attribute(computer, arg):
+    return computer.get_ea_value(arg)

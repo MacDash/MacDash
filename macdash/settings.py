@@ -171,6 +171,9 @@ try:
 
     if 'MACDASH_BRANDING' in globals():
         TEMPLATE_VISIBLE_SETTINGS.append('MACDASH_BRANDING')
+    if 'EA_MAP' in globals():
+        TEMPLATE_VISIBLE_SETTINGS.append('EA_MAP')
+
 except ImportError:
     pass
 

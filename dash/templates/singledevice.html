@@ -132,7 +132,15 @@
                     <div class="col-sm-2 col-xs-6">
                       <div class="description-block border-right"> 
                         <i class="fa fa-history fa-2x"></i>
-                        <h5 class="description-header text-green">15 Days</h5>
+                        <h5 class="description-header text-green">
+                        {% if EA_MAP|key:'last_backup_date' %}
+                          {% with EA_MAP|key:'last_backup_date' as backup_date_ea %}
+                            {{ device|extensionattribute:backup_date_ea|strptime|dayssince }}
+                          {% endwith %}
+                        {% else %}
+                          Unknown
+                        {% endif %}
+                        </h5>
                         <span class="description-text">Backup</span>
                       </div><!-- /.description-block -->
                     </div>
@@ -146,6 +154,7 @@
            <ul class="nav nav-tabs">
              <li class="active"><a href="#tab_1" data-toggle="tab"><strong>Device Details</strong></a></li>
              <li><a href="#tab_2" data-toggle="tab"><strong>Installed Applications</strong></a></li>
+             <li><a href="#tab_3" data-toggle="tab"><strong>Extension Attributes</strong></a></li>
            </ul>
            <div class="tab-content">
              <div class="tab-pane active" id="tab_1">
@@ -185,6 +194,22 @@
                   </tbody>
                 </table>
               </div>
+              <div class="tab-pane" id="tab_3">
+                <div class="box">
+                 <div class="box-body no-padding">
+                  <table class="table table-striped">
+                    <tbody>
+                    {% for ea in device.extension_attributes %}
+                      <tr>
+                        <td><strong>{{ ea|key:"name" }}</strong></td>
+                        <td>{{ ea|key:"value" }}</td>
+                      </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+             </div>
              <!-- /.tab-pane -->
            </div>
            <!-- /.tab-content -->
