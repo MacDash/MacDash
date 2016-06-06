@@ -10,15 +10,19 @@ from jss.jss_api import JSSAPISession
 
 casper_client = JSSAPISession(settings.JSS_URL, settings.JSS_USER, settings.JSS_PASSWORD)
 
-def format_jss_computer(jss_computer, sections=None, no_delete=list()):
+def format_jss_computer(jss_computer, sections=list(), no_delete=list()):
     computer_info = jss_computer.get('computer')
     if not sections:
         sections = computer_info.keys()
     # Iterate through all 'sections' of the JSS API computer response and get all keys
     # from from each dictionary to combine all into one dictionary
-    formatted_computer_info = {
-        key: value for section in sections for key, value in computer_info[section].items()
-    }
+    formatted_computer_info = dict()
+    for section in sections:
+        if isinstance(computer_info[section], dict):
+            for key, value in computer_info[section].items():
+                formatted_computer_info[key] = value
+        else:
+            formatted_computer_info[section] = computer_info[section]
 
     # Retrieve field names for a 'Computer' object.
     field_names = [field.name for field in Computer._meta.get_fields()]
@@ -33,15 +37,15 @@ def format_jss_computer(jss_computer, sections=None, no_delete=list()):
     
     return formatted_computer_info
 
-@threads(5)
+@threads(75)
 def update_computer(jss_id, name):
     print('Syncing computer: {}'.format(name))
     request = casper_client.lookup_by_id(jss_id).json()
     
     # Get nested dictionaries from the JSS API response and combine 
     # them all in 'formatted_computer_info'
-    jss_computer_sections = ['general', 'purchasing', 'hardware', 'location', 'software']
-    included_extra_fields = ['id', 'applications', 'site', 'installed_by_casper']
+    jss_computer_sections = ['general', 'purchasing', 'hardware', 'location', 'software', 'extension_attributes']
+    included_extra_fields = ['id', 'applications', 'site', 'installed_by_casper', 'extension_attributes']
     jss_computer_info = format_jss_computer(
         request, sections=jss_computer_sections, no_delete=included_extra_fields
     )

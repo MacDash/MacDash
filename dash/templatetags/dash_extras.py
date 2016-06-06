@@ -59,3 +59,11 @@ def dayssince(date):
         return '{} Day'.format(date_diff.days)
     else:
         return '{} Days'.format(date_diff.days)
+
+@register.filter(name='extensionattribute')
+def extension_attribute(obj, arg):
+    if hasattr(obj, 'extension_attributes'):
+        for ea in getattr(obj, 'extension_attributes'):
+            if ea.get('name') == arg:
+                return ea.get('value')
+    return ''

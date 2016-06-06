@@ -46,7 +46,8 @@ class Computer(models.Model):
     real_name = models.CharField(max_length=200, null=True)
     building = models.CharField(max_length=200, null=True)
     site = models.ForeignKey(Site, on_delete=models.CASCADE, null=True, related_name='computers')
-    storage = JSONField()
+    storage = JSONField(default='')
+    extension_attributes = JSONField(default='')
     applications = models.ManyToManyField(
         ComputerApplication, max_length=200, related_name='computers'
     )
