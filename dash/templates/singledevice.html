@@ -133,7 +133,11 @@
                       <div class="description-block border-right"> 
                         <i class="fa fa-history fa-2x"></i>
                         <h5 class="description-header text-green">
-                        {% if EA_MAP|key:'last_backup_date' %}
+                        {% if EA_MAP|key:'last_backup_age' %}
+                          {% with EA_MAP|key:'last_backup_age' as backup_age_ea %}
+                            {{ device|extensionattribute:backup_age_ea }}
+                          {% endwith %}
+                        {% elif EA_MAP|key:'last_backup_date' %}
                           {% with EA_MAP|key:'last_backup_date' as backup_date_ea %}
                             {{ device|extensionattribute:backup_date_ea|strptime|dayssince }}
                           {% endwith %}
