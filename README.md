@@ -1,6 +1,6 @@
 # MacDash
 
-https://github.com/cshepp1211/MacDash/blob/master/Screenshots/MacDash_Dashboard.jpg?raw=true
+https://github.com/cshepp1211/MacDash/blob/master/Screenshots/MacDash_Dashboard.jpg
 
 ### Beginning steps for running with PostgreSQL on OSX
 Download Postgres.app for OSX from http://postgresapp.com
