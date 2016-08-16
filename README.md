@@ -1,4 +1,7 @@
 # MacDash
+
+**ATTENTION: MACDASH IS IN EARLY DEVELOPMENT, USE AT YOUR OWN RISK**
+
 ![MacDash Dashboard](https://github.com/cshepp1211/MacDash/blob/master/Screenshots/MacDash_Dashboard.jpg)
 
 ### Beginning steps for running with PostgreSQL on OSX
