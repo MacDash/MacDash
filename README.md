@@ -1,5 +1,7 @@
 # MacDash
 
+https://github.com/cshepp1211/MacDash/blob/master/Screenshots/MacDash_Dashboard.jpg?raw=true
+
 ### Beginning steps for running with PostgreSQL on OSX
 Download Postgres.app for OSX from http://postgresapp.com
 Follow the setup instructions that page to add postgres to your $PATH.
