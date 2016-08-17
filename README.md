@@ -13,7 +13,7 @@ Follow the setup instructions that page to add postgres to your $PATH.
 pip install -r requirements.txt
 ```
 
-## Create the SQLite3 Database and Migrate to 
+## Create the PostgreSQL Database and Migrate to 
 Create Tables(temporary)
 ```
 python manage.py migrate
