@@ -4,12 +4,6 @@
 
 ![MacDash Dashboard](https://github.com/cshepp1211/MacDash/blob/master/Screenshots/MacDash_Dashboard.jpg)
 
-# MacDash
-
-**ATTENTION: MACDASH IS IN EARLY DEVELOPMENT, USE AT YOUR OWN RISK**
-
-![MacDash Dashboard](https://github.com/cshepp1211/MacDash/blob/master/Screenshots/MacDash_Dashboard.jpg)
-
 ## Run with PostgreSQL in a Virtual Environment on OSX
 
 ### 1. Install Xcode
