@@ -31,7 +31,7 @@ Check version - ```python3 --version```
 
 Installing python3 via homebrew also installs:  
   - the updated pip package manager, pip3  
-  - the correspond0ing Setuptools  
+  - the corresponding Setuptools  
   - pyenv which is an alternative to virtualenv  
 
 ### 5. Install Postgres
