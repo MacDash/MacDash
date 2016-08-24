@@ -82,7 +82,8 @@ python manage.py createsuperuser
   - Enter in Username, or leave blank to use logged in user  
   - Enter in Email Address  
   - Enter in password twice  
-  ### 12.  Start the server
+
+### 12. Start the server
   In terminal, enter in:
   ```
   python manage.py runserver
