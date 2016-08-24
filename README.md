@@ -1,10 +1,10 @@
 # MacDash
 
-**ATTENTION: MACDASH IS IN EARLY DEVELOPMENT, USE AT YOUR OWN RISK**
+**ATTENTION: MACDASH IS IN EARLY DEVELOPMENT, NOT PRODUCTION READY**
 
 ![MacDash Dashboard](https://github.com/cshepp1211/MacDash/blob/master/Screenshots/MacDash_Dashboard.jpg)
 
-## Run with PostgreSQL in a Virtual Environment on OSX
+## How to setup a development environment with PostgreSQL in a Virtual Environment on OSX so you can help us build.
 
 ### 1. Install Xcode
 ```
