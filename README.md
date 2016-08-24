@@ -6,6 +6,8 @@
 
 ## How to setup a development environment with PostgreSQL in a Virtual Environment on OSX so you can help us build.
 
+**ATTENTION: MACDASH IS IN EARLY DEVELOPMENT, NOT PRODUCTION READY**
+
 ### 1. Install Xcode
 ```
 xcode-select --install
