@@ -101,6 +101,7 @@ Edit the new custom_settings.py and enter your:
   - JSS URL - FQDN = https://yourjss.com:8443  
   - JSS User - the user that has API read privelages  
   - JSS Password - Password for above user  
+
 ### 14. Sync JSS DB to local DB
 In terminal, enter in:
 ```
