@@ -13,11 +13,11 @@ casper_client = JSSAPISession(settings.JSS_URL, settings.JSS_USER, settings.JSS_
 def update_computer(jss_id, name):
     print('Syncing computer: {}'.format(name))
     request = casper_client.lookup_by_id(jss_id).json()
-    
+
     jss_computer_details = request.get('computer')
     jss_computer_general = jss_computer_details.get('general')
     jss_computer_id = jss_computer_general.pop('id')
-    
+
     jss_computer_purchasing = jss_computer_details.get('purchasing')
     jss_computer_hardware = jss_computer_details.get('hardware')
     jss_computer_info = dict()
@@ -40,10 +40,10 @@ def update_computer(jss_id, name):
             del jss_computer_info[key]
         elif 'utc' in key:
             jss_computer_info[key] = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f%z')
-     
+
 
     jss_site_details = jss_computer_info.pop('site')
-    if jss_site_details:
+    if jss_site_details and jss_site_details.get('id') >= 0:
         jss_site, _ = Site.objects.get_or_create(**jss_site_details)
     else:
         jss_site = None
