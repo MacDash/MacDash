@@ -17,12 +17,12 @@ def devices(request):
     context = {
         'items': Computer.objects.all(),
         'columns': (
-            ('name', 'Name'), 
+            ('name', 'Name'),
             ('asset_tag', 'Asset Tag'),
             ('mac_address', 'MAC Address'),
             ('jamf_version', 'JAMF Version'),
             ('last_contact_time_utc', 'Last Check-in'),
-            ('site.name', 'Site')
+            ('site', 'Site')
         ),
         'page_title': 'Computers',
         'menu_active': 'devices',
@@ -36,7 +36,7 @@ def applications(request):
     context = {
         'items': ComputerApplication.objects.all(),
         'columns': (
-            ('name', 'Name'), 
+            ('name', 'Name'),
             ('version', 'Version'),
             ('path', 'Path'),
         ),
@@ -55,7 +55,7 @@ def application_installed_list(request, pk):
     context = {
         'items': application.computers.all(),
         'columns': (
-            ('name', 'Name'), 
+            ('name', 'Name'),
             ('asset_tag', 'Asset Tag'),
             ('mac_address', 'MAC Address'),
             ('jamf_version', 'JAMF Version'),
@@ -69,14 +69,14 @@ def application_installed_list(request, pk):
     return render(request, "list.html", context)
 
 
-@login_required  
+@login_required
 def singledevice(request, pk):
     computer = get_object_or_404(Computer, pk=pk)
     context = {
         'device': computer,
         'items': computer.applications.all(),
         'columns': (
-            ('name', 'Name'), 
+            ('name', 'Name'),
             ('version', 'Version'),
             ('path', 'Path'),
         ),
@@ -84,4 +84,4 @@ def singledevice(request, pk):
         'page_title': 'Applications',
 
     }
-    return render(request, "singledevice.html", context)    
+    return render(request, "singledevice.html", context)
