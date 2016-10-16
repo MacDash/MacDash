@@ -97,7 +97,7 @@
                     <div class="col-sm-2 col-xs-6">
                       <div class="description-block border-right">
                         <i class="fa fa-calendar fa-2x"></i>
-                        <h5 class="description-header text-green">{{ device.last_contact_time_utc|dayssince }}</h5>
+                        <h5 class="description-header text-green">{% if device.last_contact_time_utc %}{{ device.last_contact_time_utc|dayssince }}{% else %}Unknown{% endif %}</h5>
                         <span class="description-text">Last Check-in</span>
                       </div><!-- /.description-block -->
                     </div><!-- /.col -->
@@ -111,14 +111,14 @@
                     <div class="col-sm-2 col-xs-6">
                       <div class="description-block border-right">
                         <i class="fa fa-hdd-o fa-2x"></i>
-                        <h5 class="description-header text-green">{{ device.primary_storage_size|div:1000|floor }}GB</h5>
+                        <h5 class="description-header text-green">{% if device.primary_storage_size %}{{ device.primary_storage_size|div:1000|floor }}GB{% else %}Unknown{% endif %}</h5>
                         <span class="description-text">Storage</span>
                       </div><!-- /.description-block -->
                     </div><!-- /.col -->
                     <div class="col-sm-2 col-xs-6">
                       <div class="description-block border-right">
                         <i class="fa fa-info-circle fa-2x"></i>
-                        <h5 class="description-header text-green">{{ device.total_ram_mb|div:1024|floor }}GB</h5>
+                        <h5 class="description-header text-green">{% if device.total_ram_mb %}{{ device.total_ram_mb|div:1024|floor }}GB{% else %}Unknown{% endif %}</h5>
                         <span class="description-text">Memory</span>
                       </div><!-- /.description-block -->
                     </div><!-- /.col -->

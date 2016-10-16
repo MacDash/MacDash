@@ -58,6 +58,7 @@ def formatdate(date, pattern=None):
         pattern = '%Y-%m-%d %H:%M:%S'
     return datetime.strptime(date, pattern)
 
+
 @register.filter(name='dayssince')
 def dayssince(date):
     date_diff = datetime.now(tz=date.tzinfo) - date
@@ -67,6 +68,7 @@ def dayssince(date):
         return '{} Day'.format(date_diff.days)
     else:
         return '{} Days'.format(date_diff.days)
+
 
 @register.filter(name='extensionattribute')
 def extension_attribute(computer, arg):

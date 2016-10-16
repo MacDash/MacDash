@@ -3,7 +3,6 @@
 from datetime import datetime
 
 from django.conf import settings
-from tomorrow import threads
 
 from jss.models import Computer, Site, ComputerApplication
 from jss.jss_api import JSSAPISession
@@ -34,15 +33,14 @@ def format_jss_computer(jss_computer, sections=list(), no_delete=list()):
             # Format date in a python friendly way that can be serialized by Django
             # This only affects dates in the JSS API response that are utc
             formatted_computer_info[key] = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f%z')
-    
+
     return formatted_computer_info
 
-@threads(5)
 def update_computer(jss_id, name):
     print('Syncing computer: {}'.format(name))
     request = casper_client.lookup_by_id(jss_id).json()
-    
-    # Get nested dictionaries from the JSS API response and combine 
+
+    # Get nested dictionaries from the JSS API response and combine
     # them all in 'formatted_computer_info'
     jss_computer_sections = ['general', 'purchasing', 'hardware', 'location', 'software', 'extension_attributes']
     included_extra_fields = ['id', 'applications', 'site', 'installed_by_casper', 'extension_attributes']
@@ -50,13 +48,13 @@ def update_computer(jss_id, name):
         request, sections=jss_computer_sections, no_delete=included_extra_fields
     )
 
-    # remove the jss computer id, site and applications details from 'jss_computer_info'. 
+    # remove the jss computer id, site and applications details from 'jss_computer_info'.
     # We'll need them to be separate from the rest of the fields
     jss_computer_id = jss_computer_info.pop('id')
     jss_computer_applications = jss_computer_info.pop('applications')
     jss_site_details = jss_computer_info.pop('site')
 
-    # Get or create a 'Computer' with specified 'computer_id' and set fields 
+    # Get or create a 'Computer' with specified 'computer_id' and set fields
     # from 'jss_computer_info'
     computer, _ = Computer.objects.get_or_create(computer_id=jss_computer_id)
     for field, val in jss_computer_info.items():
