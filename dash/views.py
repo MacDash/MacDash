@@ -13,7 +13,10 @@ def _format_device(computer):
         comp_dict['last_contact_time_utc'] = computer.last_contact_time_utc.strftime('%Y-%m-%d %H:%M:%S')
     else:
         comp_dict['last_contact_time_utc'] = 'Unknown'
-    comp_dict['site'] = computer.site.name
+    if computer.site:
+        comp_dict['site'] = computer.site.name
+    else:
+        comp_dict['site'] = ''
     return comp_dict
 
 # Create your views here.
@@ -28,7 +31,7 @@ def devices(request):
     context = {
         'items': devices,
         'columns': (
-            ('name', 'Name'), 
+            ('name', 'Name'),
             ('asset_tag', 'Asset Tag'),
             ('mac_address', 'MAC Address'),
             ('jamf_version', 'JAMF Version'),
@@ -53,7 +56,7 @@ def applications(request):
     context = {
         'items': applications,
         'columns': (
-            ('name', 'Name'), 
+            ('name', 'Name'),
             ('version', 'Version'),
             ('path', 'Path'),
             ('install_count', 'Install Count')
@@ -74,7 +77,7 @@ def application_installed_list(request, pk):
     context = {
         'items': computers,
         'columns': (
-            ('name', 'Name'), 
+            ('name', 'Name'),
             ('asset_tag', 'Asset Tag'),
             ('mac_address', 'MAC Address'),
             ('jamf_version', 'JAMF Version'),
@@ -88,11 +91,11 @@ def application_installed_list(request, pk):
     return render(request, "list.html", context)
 
 
-@login_required  
+@login_required
 def singledevice(request, pk):
     computer = get_object_or_404(Computer, pk=pk)
     computer_dict = _format_device(computer)
     context = {
         'device': computer_dict,
     }
-    return render(request, "singledevice.html", context)    
+    return render(request, "singledevice.html", context)
